@@ -1,15 +1,15 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import create_session, declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
 
-DATABASE_URL='sqlite3://./shop.db'
+DATABASE_URL='sqlite:///shop.db'
 
 engine = create_engine(url=DATABASE_URL)
 
-session = create_session(
+session = sessionmaker(
     bind=engine,
 )
 
-Base = declarative_base
+Base = declarative_base()
 
 def get_db():
     db = session()

@@ -1,9 +1,12 @@
 import { useState } from "react"
+import '../styles/login.css'
+import { registerUser } from "../userApi"
 
 function Login() {
 
     const [userDetails, setUserDetails] = useState({
         'username': '',
+        'name': '',
         'password': '',
         'address': '',
         'phone': '',
@@ -12,21 +15,32 @@ function Login() {
     const handleChange = (e) => {
         const {name, value} = e.target
 
-        console.log(e.target, name, value)
         setUserDetails(prev => ({
             ...prev,
             [name]: value
         }))
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         //Want all details printed here
         e.preventDefault()
-        console.log(userDetails)
+        try {
+            const res = await registerUser(userDetails)
+            console.log(res.data.message)
+        } catch(err) {
+            console.error('Registration failed', err);
+            console.log(err.response?.data?.message || err.message);
+        }
     }
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form-register">
                 <input 
+                type='text'
+                name='name' 
+                placeholder='name'
+                value={userDetails.name}
+                onChange={handleChange}
+                /><input 
                 type='text'
                 name='username' 
                 placeholder='username'

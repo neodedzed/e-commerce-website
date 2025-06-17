@@ -1,5 +1,8 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
+from crud.user_crud import create_user
+from database.db import get_db
 from routes.schemas.user_schema import UserRegister
 
 user = APIRouter()
@@ -10,8 +13,8 @@ def health_check_user(health:str='Fuck Youser'):
         'message' : f'EVERYBODY SAY {health}'
     }
 @user.post('/register')
-def post_user(user: UserRegister):
-    print(user)
+def post_user(user: UserRegister, db: Session=Depends(get_db)):
+    create_user(db,user)    
     return {
         'message': 'success'
     }
