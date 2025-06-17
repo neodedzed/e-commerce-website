@@ -7,12 +7,6 @@ from routes.schemas.user_schema import UserLogin, UserRegister
 
 user = APIRouter()
 
-@user.get('/health')
-def health_check_user(health:str='Fuck Youser'):
-    return {
-        'message' : f'EVERYBODY SAY {health}'
-    }
-
 @user.post('/register')
 def post_user(user: UserRegister, db: Session=Depends(get_db)):
     '''
@@ -30,7 +24,7 @@ def post_user_login(user: UserLogin, db: Session=Depends(get_db)):
     '''
     message='Incorrect credentials'
     if(user_login(db,user)):
-        message='Login successful'
+        message='success'
     return {
         'message': message 
     }

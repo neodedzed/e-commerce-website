@@ -1,9 +1,10 @@
 import { useState } from "react"
 import '../styles/login.css'
 import { loginUser } from "../userApi"
+import { useNavigate } from "react-router"
 
 function Login() {
-
+    const navigate = useNavigate()
     const [userDetails, setUserDetails] = useState({
         'username': '',
         'password': '',
@@ -22,7 +23,8 @@ function Login() {
         e.preventDefault()
         try {
             const res = await loginUser(userDetails)
-            console.log(res.data.message)
+            if(res.data.message=='success') 
+                navigate('/products')
         } catch(err) {
             console.error('Registration failed', err);
             console.log(err.response?.data?.message || err.message);
