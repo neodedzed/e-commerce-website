@@ -6,10 +6,7 @@ function Login() {
 
     const [userDetails, setUserDetails] = useState({
         'username': '',
-        'name': '',
         'password': '',
-        'address': '',
-        'phone': '',
     })
 
     const handleChange = (e) => {
@@ -34,13 +31,8 @@ function Login() {
     return (
         <>
             <form onSubmit={handleSubmit} className="form-register">
+                
                 <input 
-                type='text'
-                name='name' 
-                placeholder='name'
-                value={userDetails.name}
-                onChange={handleChange}
-                /><input 
                 type='text'
                 name='username' 
                 placeholder='username'
@@ -54,21 +46,6 @@ function Login() {
                 value={userDetails.password}
                 onChange={handleChange}
                 />
-                <input 
-                type='text' 
-                name='address' 
-                placeholder="address"
-                value={userDetails.address}
-                onChange={handleChange}
-                />
-                <input 
-                type='text' 
-                name='phone'
-                placeholder="phone"
-                value={userDetails.phone}
-                onChange={handleChange}
-                />
-
                 <button type="submit">Submit</button>
             </form>
         </>
