@@ -1,6 +1,6 @@
 import { useState } from "react"
 import '../styles/login.css'
-import { registerUser } from "../userApi"
+import { loginUser } from "../userApi"
 
 function Login() {
 
@@ -21,7 +21,7 @@ function Login() {
         //Want all details printed here
         e.preventDefault()
         try {
-            const res = await registerUser(userDetails)
+            const res = await loginUser(userDetails)
             console.log(res.data.message)
         } catch(err) {
             console.error('Registration failed', err);
