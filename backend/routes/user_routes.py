@@ -24,7 +24,8 @@ def post_user_login(user: UserLogin, db: Session=Depends(get_db)):
     '''
     message='Incorrect credentials'
     if(user_login(db,user)):
-        message='success'
+        message='successc'
+        
     return {
         'message': message 
     }
