@@ -1,6 +1,6 @@
 import { useState } from "react"
 import '../styles/login.css'
-import { registerUser } from "../userApi"
+import { registerUser } from "../api/userApi"
 
 function Register() {
 

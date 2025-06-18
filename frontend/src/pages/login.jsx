@@ -1,6 +1,6 @@
 import { useState } from "react"
 import '../styles/login.css'
-import { loginUser } from "../userApi"
+import { loginUser } from "../api/userApi"
 import { useNavigate } from "react-router"
 
 function Login() {
@@ -42,7 +42,7 @@ function Login() {
                 onChange={handleChange}
                 />
                 <input 
-                type='text'
+                type='password'
                 name='password' 
                 placeholder="password"
                 value={userDetails.password}
